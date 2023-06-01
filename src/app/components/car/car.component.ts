@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/entity/car';
-import { ListResponseModel } from 'src/app/models/response/listResponseModel';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car',
@@ -9,17 +8,19 @@ import { ListResponseModel } from 'src/app/models/response/listResponseModel';
   styleUrls: ['./car.component.css'],
 })
 export class CarComponent implements OnInit {
-  cars:Car[] = [];
+  cars: Car[] = [];
   isDataLoaded = false;
-  constructor() {}
+
+  constructor(private carService: CarService) {}
 
   ngOnInit(): void {
-
+    this.getCars();
   }
 
-  getCars(){
-    
+  getCars() {
+    this.carService.getCars().subscribe((response) => {
+      this.cars = response.data;
+      this.isDataLoaded = true;
+    });
   }
-
-
 }
