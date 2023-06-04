@@ -1,1 +1,4 @@
-<p>color works!</p>
+<ul class="list-group">
+    <li (click)="setCurrentColor(color)" *ngFor="let color of colors" class="list-group-item">{{color.colorName}}</li>
+</ul>
+<h5 *ngIf="currentColor">Selected Item: {{currentColor.colorName}}</h5>
