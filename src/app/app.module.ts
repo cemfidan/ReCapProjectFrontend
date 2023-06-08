@@ -12,6 +12,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
 import { UserComponent } from './components/user/user.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TodoComponent } from './components/todo/todo.component';
     CustomerComponent,
     RentalComponent,
     UserComponent,
-    TodoComponent
+    TodoComponent,
+    FilterPipePipe
   ],
   imports: [
     BrowserModule,

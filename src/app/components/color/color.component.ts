@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Color } from 'src/app/models/entity/color';
 import { ColorService } from 'src/app/services/color.service';
 
@@ -12,7 +13,10 @@ export class ColorComponent implements OnInit {
   currentColor: Color;
   isDataLoaded = false;
 
-  constructor(private colorService: ColorService) {}
+  constructor(
+    private colorService: ColorService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.getColors();
@@ -31,6 +35,14 @@ export class ColorComponent implements OnInit {
 
   getCurrentColorClass(color: Color) {
     if (color == this.currentColor) {
+      return 'list-group-item active';
+    } else {
+      return 'list-group-item';
+    }
+  }
+
+  getAllColorClass() {
+    if (!this.currentColor) {
       return 'list-group-item active';
     } else {
       return 'list-group-item';
