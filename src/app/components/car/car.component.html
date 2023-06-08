@@ -1,3 +1,8 @@
+<div class="mb-3">
+    <label for="filterText" class="form-label">Search</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Car Name">
+</div>
+<div *ngIf="filterText.length>2" class="alert alert-light">You searched {{filterText}}</div>
 <table *ngIf="isDataLoaded==true" class="table table-striped">
     <thead>
         <tr>
@@ -11,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let car of cars">
+        <tr *ngFor="let car of cars | filterPipe:filterText">
             <td>{{car.carId}}</td>
             <td>{{car.carName}}</td>
             <td>{{car.brandId}}</td>

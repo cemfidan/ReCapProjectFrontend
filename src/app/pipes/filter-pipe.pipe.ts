@@ -5,14 +5,12 @@ import { Car } from '../models/entity/car';
   name: 'filterPipe',
 })
 export class FilterPipePipe implements PipeTransform {
-  transform(value: Car[], filterTextCarName: string): Car[] {
-    filterTextCarName = filterTextCarName
-      ? filterTextCarName.toLocaleLowerCase()
+  transform(value: Car[], filterText: string): Car[] {
+    filterText = filterText
+      ? filterText.toLocaleLowerCase()
       : '';
-    return filterTextCarName
-      ? value.filter(
-          (c: Car) => c.carName.toLocaleLowerCase().indexOf(filterTextCarName) !== -1
-        )
+    return filterText
+      ? value.filter((c: Car) => c.carName.toLocaleLowerCase().indexOf(filterText) !== -1)
       : value;
   }
 }
