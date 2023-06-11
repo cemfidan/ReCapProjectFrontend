@@ -17,13 +17,17 @@ export class CarService {
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarsByBrand(brandId:number): Observable<ListResponseModel<Car>> {
-    let newPath = this.apiUrl + 'Cars/getbrandbyid?id='+brandId;
+  getCarsByBrand(brandId: number): Observable<ListResponseModel<Car>> {
+    let newPath = this.apiUrl + 'Cars/getbrandbyid?id=' + brandId;
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
   }
 
-  getCarsByColor(colorId:number): Observable<ListResponseModel<Car>>{
-    let newPath = this.apiUrl + 'Cars/getcolorbyid?id='+colorId;
+  getCarsByColor(colorId: number): Observable<ListResponseModel<Car>> {
+    let newPath = this.apiUrl + 'Cars/getcolorbyid?id=' + colorId;
     return this.httpClient.get<ListResponseModel<Car>>(newPath);
+  }
+
+  add(car: Car) {
+    return this.httpClient.post(this.apiUrl + 'cars/add', car);
   }
 }

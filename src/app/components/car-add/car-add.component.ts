@@ -5,6 +5,8 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-car-add',
@@ -14,7 +16,11 @@ import {
 export class CarAddComponent implements OnInit {
   carAddForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private carService: CarService,
+    private toastrService: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.createCarAddForm();
@@ -32,6 +38,13 @@ export class CarAddComponent implements OnInit {
   }
 
   add() {
-    let carModel = Object.assign({}, this.carAddForm.value);
+    if (this.carAddForm.valid) {
+      let carModel = Object.assign({}, this.carAddForm.value);
+      this.carService.add(carModel).subscribe(data=>{
+        this.toastrService.success('Car added', 'Success');
+      });
+    } else {
+      this.toastrService.error('Missing information', 'Warning');
+    }
   }
 }
